@@ -1,42 +1,64 @@
-//Given a positive integer N, return the largest integer k such that 3^k < N.
+// Write a function called appendArrays that appends the items from array 2 onto array 1, returning the newly formed array.
+//
+// For example if your 2 arrays were:
+//
+// var array1 = [a,b,c]
+// var array2 = [1,2,3]
+// After using your appendArrays function, the result should be [a,b,c,1,2,3]
+//
+// Your function should also be able to handle nested arrays.
+//
+// For example, combining array [['x','x'],'B'] with array ['c','D'] should return [['x','x'],'B','c','D'].
+//
+// Your solution should account for a situation for either the first or second inputs aren't actually arrays.
+//
+// // basic test
+// Test.assertSimilar(appendArrays(['this'],['that']), ['this','that'])
+//
+// // second input is not an array
+// Test.assertSimilar(appendArrays([1,2], [1]), [1,2,1])
+//
+// // first input is not an array
+// Test.assertSimilar(appendArrays([2], [1,1,1]), [2,1,1,1])
 
-//For example,
-
-//largestPower(3) = 0
-//largestPower(4) = 1
-//You may assume that the input to your function is always a positive integer.
-
-function largestPower(n){
-  let res = 0;
-  while(Math.pow(3, res) < n) res++;
-  return res - 1;
+function appendArrays (arr1, arr2) {
+  return arr1.concat(arr2)  
 }
 
-//Given an array of strings, reverse them and their order in such way that their length stays the same as the length of the original inputs.
 
-//Example:
-//Input:  {"I", "like", "big", "butts", "and", "I", "cannot", "lie!"}
-//Output: {"!", "eilt", "onn", "acIdn", "ast", "t", "ubgibe", "kilI"}
-//Good luck!
+    
+// Complete the method that takes a boolean value and return a "Yes" string for true, or a "No" string for false.
 
-const ultimateReverse = s => {
-  let str=s.join('').split('').reverse()
-  let arr=[]
-  for (let i=0;i<s.length;i++){
-   arr.push(str.splice(0,s[i].length).join(''))
+function boolToWord( bool ){
+  if ( bool === true) {
+    return 'Yes'
+  } else {
+     return 'No'
   }
-  return arr
-};
 
-//JavaScript Arrays support a filter function (starting in JavaScript 1.6). Use the filter functionality to complete the function given.
-
-//The solution would work like the following:
-
-//getEvenNumbers([2,4,5,6]) // should == [2,4,6]
-
-function getEvenNumbers(numbersArray){
- return numbersArray.filter(value=>{if(value%2==0)return value})
 }
+
+// Given an integer as input, can you round it to the next (meaning, "higher") 5?
+
+// Examples:
+
+// input:    output:
+// 0    ->   0
+// 2    ->   5
+// 3    ->   5
+// 12   ->   15
+// 21   ->   25
+// 30   ->   30
+// -2   ->   0
+// -5   ->   -5
+// etc.
+// Input may be any positive or negative integer (including 0).
+
+// You can assume that all inputs are valid integers.
+
+function roundToNext5(n){
+  return Math.ceil(n/5)*5
+ } 
 
 //Create a function that returns the sum of the two lowest positive numbers given an array of minimum 4 positive integers. No floats or non-positive integers will be passed.
 
@@ -51,11 +73,14 @@ function sumTwoSmallestNumbers(numbers) {
     return arr[0] + arr[1];
 };
 
-// If you can't sleep, just count sheep!!
 
-// Task:
-// Given a non-negative integer, 3 for example, return a string with a murmur: "1 sheep...2 sheep...3 sheep...".
-// Input will always be valid, i.e. no negative integers.
+// We want to create a constructor function 'NameMe', which takes first name and last name as parameters. The function combines the first and last names and saves the value in "name" property.
+//
+// We already implemented that function, but when we actually run the code, the "name" property is accessible, but the "firstName" and "lastName" is not accessible. All the properties should be accessible. Can you find what's wrong with it? A test fixture is also available
 
-const countSheep = num =>
-Array.from({ length: num }, (_, index) => `${++index} sheep...`).join('')
+
+function NameMe(first, last) {
+  this.firstName = first;
+  this.lastName = last;
+  return this.name = `${first} ${last}`
+}
